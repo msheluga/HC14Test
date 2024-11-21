@@ -11,6 +11,7 @@ builder.Services.AddPooledDbContextFactory<AdventureWorks2022Context>(
     "Integrated Security=SSPI;Encrypt=True;TrustServerCertificate=True"));
 
 builder.Services.AddAuthorization();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services
     .AddGraphQLServer()

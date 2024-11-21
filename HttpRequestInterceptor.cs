@@ -11,15 +11,15 @@ namespace HC14Test
         private readonly IPolicyEvaluator _policyEvaluator;
         private readonly IAuthorizationPolicyProvider _authorizationPolicyProvider;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly ILogger _logger;
+       
 
 
 
         public HttpRequestInterceptor(
             IHttpContextAccessor httpContextAccessor,
             IPolicyEvaluator policyEvaluator,
-            IAuthorizationPolicyProvider authorizationPolicyProvider,
-            ILogger logger)
+            IAuthorizationPolicyProvider authorizationPolicyProvider
+            )
         {
             _httpContextAccessor = httpContextAccessor;
             _policyEvaluator = policyEvaluator;
