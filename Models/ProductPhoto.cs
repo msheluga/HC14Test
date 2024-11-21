@@ -18,8 +18,7 @@ public partial class ProductPhoto
     /// Primary key for ProductPhoto records.
     /// </summary>
     [Key]
-    [Column("ProductPhotoID")]
-    public int ProductPhotoId { get; set; }
+    public int ProductPhotoID { get; set; }
 
     /// <summary>
     /// Small image of the product.

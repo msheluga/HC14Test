@@ -11,32 +11,29 @@ namespace HC14Test.Models;
 /// <summary>
 /// Employee department transfers.
 /// </summary>
-[PrimaryKey("BusinessEntityId", "StartDate", "DepartmentId", "ShiftId")]
+[PrimaryKey("BusinessEntityID", "StartDate", "DepartmentID", "ShiftID")]
 [Table("EmployeeDepartmentHistory", Schema = "HumanResources")]
-[Index("DepartmentId", Name = "IX_EmployeeDepartmentHistory_DepartmentID")]
-[Index("ShiftId", Name = "IX_EmployeeDepartmentHistory_ShiftID")]
+[Index("DepartmentID", Name = "IX_EmployeeDepartmentHistory_DepartmentID")]
+[Index("ShiftID", Name = "IX_EmployeeDepartmentHistory_ShiftID")]
 public partial class EmployeeDepartmentHistory
 {
     /// <summary>
     /// Employee identification number. Foreign key to Employee.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Department in which the employee worked including currently. Foreign key to Department.DepartmentID.
     /// </summary>
     [Key]
-    [Column("DepartmentID")]
-    public short DepartmentId { get; set; }
+    public short DepartmentID { get; set; }
 
     /// <summary>
     /// Identifies which 8-hour shift the employee works. Foreign key to Shift.Shift.ID.
     /// </summary>
     [Key]
-    [Column("ShiftID")]
-    public byte ShiftId { get; set; }
+    public byte ShiftID { get; set; }
 
     /// <summary>
     /// Date the employee started work in the department.
@@ -57,15 +54,15 @@ public partial class EmployeeDepartmentHistory
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("EmployeeDepartmentHistories")]
     public virtual Employee BusinessEntity { get; set; }
 
-    [ForeignKey("DepartmentId")]
+    [ForeignKey("DepartmentID")]
     [InverseProperty("EmployeeDepartmentHistories")]
     public virtual Department Department { get; set; }
 
-    [ForeignKey("ShiftId")]
+    [ForeignKey("ShiftID")]
     [InverseProperty("EmployeeDepartmentHistories")]
     public virtual Shift Shift { get; set; }
 }

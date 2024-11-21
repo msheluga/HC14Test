@@ -12,15 +12,14 @@ namespace HC14Test.Models;
 /// Sale discounts lookup table.
 /// </summary>
 [Table("SpecialOffer", Schema = "Sales")]
-[Index("Rowguid", Name = "AK_SpecialOffer_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_SpecialOffer_rowguid", IsUnique = true)]
 public partial class SpecialOffer
 {
     /// <summary>
     /// Primary key for SpecialOffer records.
     /// </summary>
     [Key]
-    [Column("SpecialOfferID")]
-    public int SpecialOfferId { get; set; }
+    public int SpecialOfferID { get; set; }
 
     /// <summary>
     /// Discount description.
@@ -74,8 +73,7 @@ public partial class SpecialOffer
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.

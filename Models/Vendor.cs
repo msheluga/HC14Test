@@ -19,8 +19,7 @@ public partial class Vendor
     /// Primary key for Vendor records.  Foreign key to BusinessEntity.BusinessEntityID
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Vendor account (identification) number.
@@ -54,9 +53,8 @@ public partial class Vendor
     /// <summary>
     /// Vendor URL.
     /// </summary>
-    [Column("PurchasingWebServiceURL")]
     [StringLength(1024)]
-    public string PurchasingWebServiceUrl { get; set; }
+    public string PurchasingWebServiceURL { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -64,7 +62,7 @@ public partial class Vendor
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("Vendor")]
     public virtual BusinessEntity BusinessEntity { get; set; }
 

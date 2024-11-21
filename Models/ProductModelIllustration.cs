@@ -11,7 +11,7 @@ namespace HC14Test.Models;
 /// <summary>
 /// Cross-reference table mapping product models and illustrations.
 /// </summary>
-[PrimaryKey("ProductModelId", "IllustrationId")]
+[PrimaryKey("ProductModelID", "IllustrationID")]
 [Table("ProductModelIllustration", Schema = "Production")]
 public partial class ProductModelIllustration
 {
@@ -19,15 +19,13 @@ public partial class ProductModelIllustration
     /// Primary key. Foreign key to ProductModel.ProductModelID.
     /// </summary>
     [Key]
-    [Column("ProductModelID")]
-    public int ProductModelId { get; set; }
+    public int ProductModelID { get; set; }
 
     /// <summary>
     /// Primary key. Foreign key to Illustration.IllustrationID.
     /// </summary>
     [Key]
-    [Column("IllustrationID")]
-    public int IllustrationId { get; set; }
+    public int IllustrationID { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -35,11 +33,11 @@ public partial class ProductModelIllustration
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("IllustrationId")]
+    [ForeignKey("IllustrationID")]
     [InverseProperty("ProductModelIllustrations")]
     public virtual Illustration Illustration { get; set; }
 
-    [ForeignKey("ProductModelId")]
+    [ForeignKey("ProductModelID")]
     [InverseProperty("ProductModelIllustrations")]
     public virtual ProductModel ProductModel { get; set; }
 }

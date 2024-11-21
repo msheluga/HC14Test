@@ -14,15 +14,14 @@ namespace HC14Test.Models;
 [Table("StateProvince", Schema = "Person")]
 [Index("Name", Name = "AK_StateProvince_Name", IsUnique = true)]
 [Index("StateProvinceCode", "CountryRegionCode", Name = "AK_StateProvince_StateProvinceCode_CountryRegionCode", IsUnique = true)]
-[Index("Rowguid", Name = "AK_StateProvince_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_StateProvince_rowguid", IsUnique = true)]
 public partial class StateProvince
 {
     /// <summary>
     /// Primary key for StateProvince records.
     /// </summary>
     [Key]
-    [Column("StateProvinceID")]
-    public int StateProvinceId { get; set; }
+    public int StateProvinceID { get; set; }
 
     /// <summary>
     /// ISO standard state or province code.
@@ -53,14 +52,12 @@ public partial class StateProvince
     /// <summary>
     /// ID of the territory in which the state or province is located. Foreign key to SalesTerritory.SalesTerritoryID.
     /// </summary>
-    [Column("TerritoryID")]
-    public int TerritoryId { get; set; }
+    public int TerritoryID { get; set; }
 
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -78,7 +75,7 @@ public partial class StateProvince
     [InverseProperty("StateProvince")]
     public virtual ICollection<SalesTaxRate> SalesTaxRates { get; set; } = new List<SalesTaxRate>();
 
-    [ForeignKey("TerritoryId")]
+    [ForeignKey("TerritoryID")]
     [InverseProperty("StateProvinces")]
     public virtual SalesTerritory Territory { get; set; }
 }

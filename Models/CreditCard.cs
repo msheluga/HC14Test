@@ -19,8 +19,7 @@ public partial class CreditCard
     /// Primary key for CreditCard records.
     /// </summary>
     [Key]
-    [Column("CreditCardID")]
-    public int CreditCardId { get; set; }
+    public int CreditCardID { get; set; }
 
     /// <summary>
     /// Credit card name.

@@ -11,17 +11,16 @@ namespace HC14Test.Models;
 /// <summary>
 /// Sales performance tracking.
 /// </summary>
-[PrimaryKey("BusinessEntityId", "QuotaDate")]
+[PrimaryKey("BusinessEntityID", "QuotaDate")]
 [Table("SalesPersonQuotaHistory", Schema = "Sales")]
-[Index("Rowguid", Name = "AK_SalesPersonQuotaHistory_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_SalesPersonQuotaHistory_rowguid", IsUnique = true)]
 public partial class SalesPersonQuotaHistory
 {
     /// <summary>
     /// Sales person identification number. Foreign key to SalesPerson.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Sales quota date.
@@ -39,8 +38,7 @@ public partial class SalesPersonQuotaHistory
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -48,7 +46,7 @@ public partial class SalesPersonQuotaHistory
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("SalesPersonQuotaHistories")]
     public virtual SalesPerson BusinessEntity { get; set; }
 }

@@ -11,24 +11,22 @@ namespace HC14Test.Models;
 /// <summary>
 /// Sales representative transfers to other sales territories.
 /// </summary>
-[PrimaryKey("BusinessEntityId", "StartDate", "TerritoryId")]
+[PrimaryKey("BusinessEntityID", "StartDate", "TerritoryID")]
 [Table("SalesTerritoryHistory", Schema = "Sales")]
-[Index("Rowguid", Name = "AK_SalesTerritoryHistory_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_SalesTerritoryHistory_rowguid", IsUnique = true)]
 public partial class SalesTerritoryHistory
 {
     /// <summary>
     /// Primary key. The sales rep.  Foreign key to SalesPerson.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Primary key. Territory identification number. Foreign key to SalesTerritory.SalesTerritoryID.
     /// </summary>
     [Key]
-    [Column("TerritoryID")]
-    public int TerritoryId { get; set; }
+    public int TerritoryID { get; set; }
 
     /// <summary>
     /// Primary key. Date the sales representive started work in the territory.
@@ -46,8 +44,7 @@ public partial class SalesTerritoryHistory
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -55,11 +52,11 @@ public partial class SalesTerritoryHistory
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("SalesTerritoryHistories")]
     public virtual SalesPerson BusinessEntity { get; set; }
 
-    [ForeignKey("TerritoryId")]
+    [ForeignKey("TerritoryID")]
     [InverseProperty("SalesTerritoryHistories")]
     public virtual SalesTerritory Territory { get; set; }
 }

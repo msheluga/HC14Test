@@ -12,34 +12,30 @@ namespace HC14Test.Models;
 /// Record of each purchase order, sales order, or work order transaction year to date.
 /// </summary>
 [Table("TransactionHistory", Schema = "Production")]
-[Index("ProductId", Name = "IX_TransactionHistory_ProductID")]
-[Index("ReferenceOrderId", "ReferenceOrderLineId", Name = "IX_TransactionHistory_ReferenceOrderID_ReferenceOrderLineID")]
+[Index("ProductID", Name = "IX_TransactionHistory_ProductID")]
+[Index("ReferenceOrderID", "ReferenceOrderLineID", Name = "IX_TransactionHistory_ReferenceOrderID_ReferenceOrderLineID")]
 public partial class TransactionHistory
 {
     /// <summary>
     /// Primary key for TransactionHistory records.
     /// </summary>
     [Key]
-    [Column("TransactionID")]
-    public int TransactionId { get; set; }
+    public int TransactionID { get; set; }
 
     /// <summary>
     /// Product identification number. Foreign key to Product.ProductID.
     /// </summary>
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Purchase order, sales order, or work order identification number.
     /// </summary>
-    [Column("ReferenceOrderID")]
-    public int ReferenceOrderId { get; set; }
+    public int ReferenceOrderID { get; set; }
 
     /// <summary>
     /// Line number associated with the purchase order, sales order, or work order.
     /// </summary>
-    [Column("ReferenceOrderLineID")]
-    public int ReferenceOrderLineId { get; set; }
+    public int ReferenceOrderLineID { get; set; }
 
     /// <summary>
     /// Date and time of the transaction.
@@ -71,7 +67,7 @@ public partial class TransactionHistory
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductID")]
     [InverseProperty("TransactionHistories")]
     public virtual Product Product { get; set; }
 }

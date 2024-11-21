@@ -11,24 +11,22 @@ namespace HC14Test.Models;
 /// <summary>
 /// Work order details.
 /// </summary>
-[PrimaryKey("WorkOrderId", "ProductId", "OperationSequence")]
+[PrimaryKey("WorkOrderID", "ProductID", "OperationSequence")]
 [Table("WorkOrderRouting", Schema = "Production")]
-[Index("ProductId", Name = "IX_WorkOrderRouting_ProductID")]
+[Index("ProductID", Name = "IX_WorkOrderRouting_ProductID")]
 public partial class WorkOrderRouting
 {
     /// <summary>
     /// Primary key. Foreign key to WorkOrder.WorkOrderID.
     /// </summary>
     [Key]
-    [Column("WorkOrderID")]
-    public int WorkOrderId { get; set; }
+    public int WorkOrderID { get; set; }
 
     /// <summary>
     /// Primary key. Foreign key to Product.ProductID.
     /// </summary>
     [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Primary key. Indicates the manufacturing process sequence.
@@ -39,8 +37,7 @@ public partial class WorkOrderRouting
     /// <summary>
     /// Manufacturing location where the part is processed. Foreign key to Location.LocationID.
     /// </summary>
-    [Column("LocationID")]
-    public short LocationId { get; set; }
+    public short LocationID { get; set; }
 
     /// <summary>
     /// Planned manufacturing start date.
@@ -90,11 +87,11 @@ public partial class WorkOrderRouting
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("LocationId")]
+    [ForeignKey("LocationID")]
     [InverseProperty("WorkOrderRoutings")]
     public virtual Location Location { get; set; }
 
-    [ForeignKey("WorkOrderId")]
+    [ForeignKey("WorkOrderID")]
     [InverseProperty("WorkOrderRoutings")]
     public virtual WorkOrder WorkOrder { get; set; }
 }

@@ -13,21 +13,19 @@ namespace HC14Test.Models;
 /// </summary>
 [Table("ProductSubcategory", Schema = "Production")]
 [Index("Name", Name = "AK_ProductSubcategory_Name", IsUnique = true)]
-[Index("Rowguid", Name = "AK_ProductSubcategory_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_ProductSubcategory_rowguid", IsUnique = true)]
 public partial class ProductSubcategory
 {
     /// <summary>
     /// Primary key for ProductSubcategory records.
     /// </summary>
     [Key]
-    [Column("ProductSubcategoryID")]
-    public int ProductSubcategoryId { get; set; }
+    public int ProductSubcategoryID { get; set; }
 
     /// <summary>
     /// Product category identification number. Foreign key to ProductCategory.ProductCategoryID.
     /// </summary>
-    [Column("ProductCategoryID")]
-    public int ProductCategoryId { get; set; }
+    public int ProductCategoryID { get; set; }
 
     /// <summary>
     /// Subcategory description.
@@ -39,8 +37,7 @@ public partial class ProductSubcategory
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -48,7 +45,7 @@ public partial class ProductSubcategory
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("ProductCategoryId")]
+    [ForeignKey("ProductCategoryID")]
     [InverseProperty("ProductSubcategories")]
     public virtual ProductCategory ProductCategory { get; set; }
 

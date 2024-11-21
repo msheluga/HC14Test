@@ -12,33 +12,30 @@ namespace HC14Test.Models;
 /// Employee information such as salary, department, and title.
 /// </summary>
 [Table("Employee", Schema = "HumanResources")]
-[Index("LoginId", Name = "AK_Employee_LoginID", IsUnique = true)]
-[Index("NationalIdnumber", Name = "AK_Employee_NationalIDNumber", IsUnique = true)]
-[Index("Rowguid", Name = "AK_Employee_rowguid", IsUnique = true)]
+[Index("LoginID", Name = "AK_Employee_LoginID", IsUnique = true)]
+[Index("NationalIDNumber", Name = "AK_Employee_NationalIDNumber", IsUnique = true)]
+[Index("rowguid", Name = "AK_Employee_rowguid", IsUnique = true)]
 public partial class Employee
 {
     /// <summary>
     /// Primary key for Employee records.  Foreign key to BusinessEntity.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Unique national identification number such as a social security number.
     /// </summary>
     [Required]
-    [Column("NationalIDNumber")]
     [StringLength(15)]
-    public string NationalIdnumber { get; set; }
+    public string NationalIDNumber { get; set; }
 
     /// <summary>
     /// Network login.
     /// </summary>
     [Required]
-    [Column("LoginID")]
     [StringLength(256)]
-    public string LoginId { get; set; }
+    public string LoginID { get; set; }
 
     /// <summary>
     /// The depth of the employee in the corporate hierarchy.
@@ -101,8 +98,7 @@ public partial class Employee
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -110,7 +106,7 @@ public partial class Employee
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("Employee")]
     public virtual Person BusinessEntity { get; set; }
 

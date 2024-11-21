@@ -11,7 +11,7 @@ namespace HC14Test.Models;
 /// <summary>
 /// Where to send a person email.
 /// </summary>
-[PrimaryKey("BusinessEntityId", "EmailAddressId")]
+[PrimaryKey("BusinessEntityID", "EmailAddressID")]
 [Table("EmailAddress", Schema = "Person")]
 [Index("EmailAddress1", Name = "IX_EmailAddress_EmailAddress")]
 public partial class EmailAddress
@@ -20,15 +20,13 @@ public partial class EmailAddress
     /// Primary key. Person associated with this email address.  Foreign key to Person.BusinessEntityID
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Primary key. ID of this email address.
     /// </summary>
     [Key]
-    [Column("EmailAddressID")]
-    public int EmailAddressId { get; set; }
+    public int EmailAddressID { get; set; }
 
     /// <summary>
     /// E-mail address for the person.
@@ -40,8 +38,7 @@ public partial class EmailAddress
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -49,7 +46,7 @@ public partial class EmailAddress
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("EmailAddresses")]
     public virtual Person BusinessEntity { get; set; }
 }

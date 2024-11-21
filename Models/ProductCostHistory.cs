@@ -11,7 +11,7 @@ namespace HC14Test.Models;
 /// <summary>
 /// Changes in the cost of a product over time.
 /// </summary>
-[PrimaryKey("ProductId", "StartDate")]
+[PrimaryKey("ProductID", "StartDate")]
 [Table("ProductCostHistory", Schema = "Production")]
 public partial class ProductCostHistory
 {
@@ -19,8 +19,7 @@ public partial class ProductCostHistory
     /// Product identification number. Foreign key to Product.ProductID
     /// </summary>
     [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Product cost start date.
@@ -47,7 +46,7 @@ public partial class ProductCostHistory
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductID")]
     [InverseProperty("ProductCostHistories")]
     public virtual Product Product { get; set; }
 }

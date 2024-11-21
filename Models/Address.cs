@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using HC14Test.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace HC14Test.Models;
@@ -13,16 +12,15 @@ namespace HC14Test.Models;
 /// Street address information for customers, employees, and vendors.
 /// </summary>
 [Table("Address", Schema = "Person")]
-[Index("Rowguid", Name = "AK_Address_rowguid", IsUnique = true)]
-[Index("AddressLine1", "AddressLine2", "City", "StateProvinceId", "PostalCode", Name = "IX_Address_AddressLine1_AddressLine2_City_StateProvinceID_PostalCode", IsUnique = true)]
-[Index("StateProvinceId", Name = "IX_Address_StateProvinceID")]
+[Index("rowguid", Name = "AK_Address_rowguid", IsUnique = true)]
+[Index("AddressLine1", "AddressLine2", "City", "StateProvinceID", "PostalCode", Name = "IX_Address_AddressLine1_AddressLine2_City_StateProvinceID_PostalCode", IsUnique = true)]
+[Index("StateProvinceID", Name = "IX_Address_StateProvinceID")]
 public partial class Address
 {
     /// <summary>
     /// Primary key for Address records.
     /// </summary>
-    [Key]   
-    [PermissionAuthorize("AdventureWorks2022.Person.Address.AddressID.Read")]
+    [Key]
     public int AddressID { get; set; }
 
     /// <summary>
@@ -30,14 +28,12 @@ public partial class Address
     /// </summary>
     [Required]
     [StringLength(60)]
-    [PermissionAuthorize("AdventureWorks2022.Person.Address.AddressLine1.Read")]
     public string AddressLine1 { get; set; }
 
     /// <summary>
     /// Second street address line.
     /// </summary>
     [StringLength(60)]
-    [PermissionAuthorize("AdventureWorks2022.Person.Address.AddressLine2.Read")]
     public string AddressLine2 { get; set; }
 
     /// <summary>
@@ -45,14 +41,11 @@ public partial class Address
     /// </summary>
     [Required]
     [StringLength(30)]
-    [PermissionAuthorize("AdventureWorks2022.Person.Address.City.Read")]
-
     public string City { get; set; }
 
     /// <summary>
     /// Unique identification number for the state or province. Foreign key to StateProvince table.
-    /// </summary>    
-    [PermissionAuthorize("AdventureWorks2022.Person.Address.StateProvinceID.Read")]
+    /// </summary>
     public int StateProvinceID { get; set; }
 
     /// <summary>
@@ -60,20 +53,17 @@ public partial class Address
     /// </summary>
     [Required]
     [StringLength(15)]
-    [PermissionAuthorize("AdventureWorks2022.Person.Address.PostalCode.Read")]
     public string PostalCode { get; set; }
 
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
-    /// </summary>   
-    [PermissionAuthorize("AdventureWorks2022.Person.Address.rowguid.Read")]
+    /// </summary>
     public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
     /// </summary>
     [Column(TypeName = "datetime")]
-    [PermissionAuthorize("AdventureWorks2022.Person.Address.ModifiedDate.Read")]
     public DateTime ModifiedDate { get; set; }
 
     [InverseProperty("Address")]
@@ -85,7 +75,7 @@ public partial class Address
     [InverseProperty("ShipToAddress")]
     public virtual ICollection<SalesOrderHeader> SalesOrderHeaderShipToAddresses { get; set; } = new List<SalesOrderHeader>();
 
-    [ForeignKey("StateProvinceId")]
+    [ForeignKey("StateProvinceID")]
     [InverseProperty("Addresses")]
     public virtual StateProvince StateProvince { get; set; }
 }

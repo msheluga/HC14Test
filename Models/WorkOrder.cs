@@ -12,22 +12,20 @@ namespace HC14Test.Models;
 /// Manufacturing work orders.
 /// </summary>
 [Table("WorkOrder", Schema = "Production")]
-[Index("ProductId", Name = "IX_WorkOrder_ProductID")]
-[Index("ScrapReasonId", Name = "IX_WorkOrder_ScrapReasonID")]
+[Index("ProductID", Name = "IX_WorkOrder_ProductID")]
+[Index("ScrapReasonID", Name = "IX_WorkOrder_ScrapReasonID")]
 public partial class WorkOrder
 {
     /// <summary>
     /// Primary key for WorkOrder records.
     /// </summary>
     [Key]
-    [Column("WorkOrderID")]
-    public int WorkOrderId { get; set; }
+    public int WorkOrderID { get; set; }
 
     /// <summary>
     /// Product identification number. Foreign key to Product.ProductID.
     /// </summary>
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Product quantity to build.
@@ -65,8 +63,7 @@ public partial class WorkOrder
     /// <summary>
     /// Reason for inspection failure.
     /// </summary>
-    [Column("ScrapReasonID")]
-    public short? ScrapReasonId { get; set; }
+    public short? ScrapReasonID { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -74,11 +71,11 @@ public partial class WorkOrder
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductID")]
     [InverseProperty("WorkOrders")]
     public virtual Product Product { get; set; }
 
-    [ForeignKey("ScrapReasonId")]
+    [ForeignKey("ScrapReasonID")]
     [InverseProperty("WorkOrders")]
     public virtual ScrapReason ScrapReason { get; set; }
 

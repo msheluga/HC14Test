@@ -13,7 +13,7 @@ namespace HC14Test.Models;
 /// </summary>
 [Table("ProductModel", Schema = "Production")]
 [Index("Name", Name = "AK_ProductModel_Name", IsUnique = true)]
-[Index("Rowguid", Name = "AK_ProductModel_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_ProductModel_rowguid", IsUnique = true)]
 [Index("CatalogDescription", Name = "PXML_ProductModel_CatalogDescription")]
 [Index("Instructions", Name = "PXML_ProductModel_Instructions")]
 public partial class ProductModel
@@ -22,8 +22,7 @@ public partial class ProductModel
     /// Primary key for ProductModel records.
     /// </summary>
     [Key]
-    [Column("ProductModelID")]
-    public int ProductModelId { get; set; }
+    public int ProductModelID { get; set; }
 
     /// <summary>
     /// Product model description.
@@ -47,8 +46,7 @@ public partial class ProductModel
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.

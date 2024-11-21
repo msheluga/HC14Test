@@ -12,23 +12,21 @@ namespace HC14Test.Models;
 /// Contains online customer orders until the order is submitted or cancelled.
 /// </summary>
 [Table("ShoppingCartItem", Schema = "Sales")]
-[Index("ShoppingCartId", "ProductId", Name = "IX_ShoppingCartItem_ShoppingCartID_ProductID")]
+[Index("ShoppingCartID", "ProductID", Name = "IX_ShoppingCartItem_ShoppingCartID_ProductID")]
 public partial class ShoppingCartItem
 {
     /// <summary>
     /// Primary key for ShoppingCartItem records.
     /// </summary>
     [Key]
-    [Column("ShoppingCartItemID")]
-    public int ShoppingCartItemId { get; set; }
+    public int ShoppingCartItemID { get; set; }
 
     /// <summary>
     /// Shopping cart identification number.
     /// </summary>
     [Required]
-    [Column("ShoppingCartID")]
     [StringLength(50)]
-    public string ShoppingCartId { get; set; }
+    public string ShoppingCartID { get; set; }
 
     /// <summary>
     /// Product quantity ordered.
@@ -38,8 +36,7 @@ public partial class ShoppingCartItem
     /// <summary>
     /// Product ordered. Foreign key to Product.ProductID.
     /// </summary>
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Date the time the record was created.
@@ -53,7 +50,7 @@ public partial class ShoppingCartItem
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductID")]
     [InverseProperty("ShoppingCartItems")]
     public virtual Product Product { get; set; }
 }

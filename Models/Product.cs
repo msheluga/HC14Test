@@ -14,15 +14,14 @@ namespace HC14Test.Models;
 [Table("Product", Schema = "Production")]
 [Index("Name", Name = "AK_Product_Name", IsUnique = true)]
 [Index("ProductNumber", Name = "AK_Product_ProductNumber", IsUnique = true)]
-[Index("Rowguid", Name = "AK_Product_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_Product_rowguid", IsUnique = true)]
 public partial class Product
 {
     /// <summary>
     /// Primary key for Product records.
     /// </summary>
     [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Name of the product.
@@ -126,14 +125,12 @@ public partial class Product
     /// <summary>
     /// Product is a member of this product subcategory. Foreign key to ProductSubCategory.ProductSubCategoryID. 
     /// </summary>
-    [Column("ProductSubcategoryID")]
-    public int? ProductSubcategoryId { get; set; }
+    public int? ProductSubcategoryID { get; set; }
 
     /// <summary>
     /// Product is a member of this product model. Foreign key to ProductModel.ProductModelID.
     /// </summary>
-    [Column("ProductModelID")]
-    public int? ProductModelId { get; set; }
+    public int? ProductModelID { get; set; }
 
     /// <summary>
     /// Date the product was available for sale.
@@ -156,8 +153,7 @@ public partial class Product
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -180,7 +176,7 @@ public partial class Product
     [InverseProperty("Product")]
     public virtual ICollection<ProductListPriceHistory> ProductListPriceHistories { get; set; } = new List<ProductListPriceHistory>();
 
-    [ForeignKey("ProductModelId")]
+    [ForeignKey("ProductModelID")]
     [InverseProperty("Products")]
     public virtual ProductModel ProductModel { get; set; }
 
@@ -190,7 +186,7 @@ public partial class Product
     [InverseProperty("Product")]
     public virtual ICollection<ProductReview> ProductReviews { get; set; } = new List<ProductReview>();
 
-    [ForeignKey("ProductSubcategoryId")]
+    [ForeignKey("ProductSubcategoryID")]
     [InverseProperty("Products")]
     public virtual ProductSubcategory ProductSubcategory { get; set; }
 

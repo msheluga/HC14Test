@@ -19,8 +19,7 @@ public partial class Department
     /// Primary key for Department records.
     /// </summary>
     [Key]
-    [Column("DepartmentID")]
-    public short DepartmentId { get; set; }
+    public short DepartmentID { get; set; }
 
     /// <summary>
     /// Name of the department.

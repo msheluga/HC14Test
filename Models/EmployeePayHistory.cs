@@ -11,7 +11,7 @@ namespace HC14Test.Models;
 /// <summary>
 /// Employee pay history.
 /// </summary>
-[PrimaryKey("BusinessEntityId", "RateChangeDate")]
+[PrimaryKey("BusinessEntityID", "RateChangeDate")]
 [Table("EmployeePayHistory", Schema = "HumanResources")]
 public partial class EmployeePayHistory
 {
@@ -19,8 +19,7 @@ public partial class EmployeePayHistory
     /// Employee identification number. Foreign key to Employee.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Date the change in pay is effective
@@ -46,7 +45,7 @@ public partial class EmployeePayHistory
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("EmployeePayHistories")]
     public virtual Employee BusinessEntity { get; set; }
 }

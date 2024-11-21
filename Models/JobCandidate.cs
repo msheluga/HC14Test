@@ -12,21 +12,19 @@ namespace HC14Test.Models;
 /// Résumés submitted to Human Resources by job applicants.
 /// </summary>
 [Table("JobCandidate", Schema = "HumanResources")]
-[Index("BusinessEntityId", Name = "IX_JobCandidate_BusinessEntityID")]
+[Index("BusinessEntityID", Name = "IX_JobCandidate_BusinessEntityID")]
 public partial class JobCandidate
 {
     /// <summary>
     /// Primary key for JobCandidate records.
     /// </summary>
     [Key]
-    [Column("JobCandidateID")]
-    public int JobCandidateId { get; set; }
+    public int JobCandidateID { get; set; }
 
     /// <summary>
     /// Employee identification number if applicant was hired. Foreign key to Employee.BusinessEntityID.
     /// </summary>
-    [Column("BusinessEntityID")]
-    public int? BusinessEntityId { get; set; }
+    public int? BusinessEntityID { get; set; }
 
     /// <summary>
     /// Résumé in XML format.
@@ -40,7 +38,7 @@ public partial class JobCandidate
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("JobCandidates")]
     public virtual Employee BusinessEntity { get; set; }
 }

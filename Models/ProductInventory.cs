@@ -11,7 +11,7 @@ namespace HC14Test.Models;
 /// <summary>
 /// Product inventory information.
 /// </summary>
-[PrimaryKey("ProductId", "LocationId")]
+[PrimaryKey("ProductID", "LocationID")]
 [Table("ProductInventory", Schema = "Production")]
 public partial class ProductInventory
 {
@@ -19,15 +19,13 @@ public partial class ProductInventory
     /// Product identification number. Foreign key to Product.ProductID.
     /// </summary>
     [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Inventory location identification number. Foreign key to Location.LocationID. 
     /// </summary>
     [Key]
-    [Column("LocationID")]
-    public short LocationId { get; set; }
+    public short LocationID { get; set; }
 
     /// <summary>
     /// Storage compartment within an inventory location.
@@ -49,8 +47,7 @@ public partial class ProductInventory
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -58,11 +55,11 @@ public partial class ProductInventory
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("LocationId")]
+    [ForeignKey("LocationID")]
     [InverseProperty("ProductInventories")]
     public virtual Location Location { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductID")]
     [InverseProperty("ProductInventories")]
     public virtual Product Product { get; set; }
 }

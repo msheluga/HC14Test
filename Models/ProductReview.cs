@@ -12,21 +12,19 @@ namespace HC14Test.Models;
 /// Customer reviews of products they have purchased.
 /// </summary>
 [Table("ProductReview", Schema = "Production")]
-[Index("ProductId", "ReviewerName", Name = "IX_ProductReview_ProductID_Name")]
+[Index("ProductID", "ReviewerName", Name = "IX_ProductReview_ProductID_Name")]
 public partial class ProductReview
 {
     /// <summary>
     /// Primary key for ProductReview records.
     /// </summary>
     [Key]
-    [Column("ProductReviewID")]
-    public int ProductReviewId { get; set; }
+    public int ProductReviewID { get; set; }
 
     /// <summary>
     /// Product identification number. Foreign key to Product.ProductID.
     /// </summary>
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Name of the reviewer.
@@ -65,7 +63,7 @@ public partial class ProductReview
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductID")]
     [InverseProperty("ProductReviews")]
     public virtual Product Product { get; set; }
 }

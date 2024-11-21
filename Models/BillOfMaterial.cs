@@ -19,20 +19,17 @@ public partial class BillOfMaterial
     /// Primary key for BillOfMaterials records.
     /// </summary>
     [Key]
-    [Column("BillOfMaterialsID")]
-    public int BillOfMaterialsId { get; set; }
+    public int BillOfMaterialsID { get; set; }
 
     /// <summary>
     /// Parent product identification number. Foreign key to Product.ProductID.
     /// </summary>
-    [Column("ProductAssemblyID")]
-    public int? ProductAssemblyId { get; set; }
+    public int? ProductAssemblyID { get; set; }
 
     /// <summary>
     /// Component identification number. Foreign key to Product.ProductID.
     /// </summary>
-    [Column("ComponentID")]
-    public int ComponentId { get; set; }
+    public int ComponentID { get; set; }
 
     /// <summary>
     /// Date the component started being used in the assembly item.
@@ -56,8 +53,7 @@ public partial class BillOfMaterial
     /// <summary>
     /// Indicates the depth the component is from its parent (AssemblyID).
     /// </summary>
-    [Column("BOMLevel")]
-    public short Bomlevel { get; set; }
+    public short BOMLevel { get; set; }
 
     /// <summary>
     /// Quantity of the component needed to create the assembly.
@@ -71,11 +67,11 @@ public partial class BillOfMaterial
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("ComponentId")]
+    [ForeignKey("ComponentID")]
     [InverseProperty("BillOfMaterialComponents")]
     public virtual Product Component { get; set; }
 
-    [ForeignKey("ProductAssemblyId")]
+    [ForeignKey("ProductAssemblyID")]
     [InverseProperty("BillOfMaterialProductAssemblies")]
     public virtual Product ProductAssembly { get; set; }
 

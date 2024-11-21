@@ -11,24 +11,22 @@ namespace HC14Test.Models;
 /// <summary>
 /// Individual products associated with a specific purchase order. See PurchaseOrderHeader.
 /// </summary>
-[PrimaryKey("PurchaseOrderId", "PurchaseOrderDetailId")]
+[PrimaryKey("PurchaseOrderID", "PurchaseOrderDetailID")]
 [Table("PurchaseOrderDetail", Schema = "Purchasing")]
-[Index("ProductId", Name = "IX_PurchaseOrderDetail_ProductID")]
+[Index("ProductID", Name = "IX_PurchaseOrderDetail_ProductID")]
 public partial class PurchaseOrderDetail
 {
     /// <summary>
     /// Primary key. Foreign key to PurchaseOrderHeader.PurchaseOrderID.
     /// </summary>
     [Key]
-    [Column("PurchaseOrderID")]
-    public int PurchaseOrderId { get; set; }
+    public int PurchaseOrderID { get; set; }
 
     /// <summary>
     /// Primary key. One line number per purchased product.
     /// </summary>
     [Key]
-    [Column("PurchaseOrderDetailID")]
-    public int PurchaseOrderDetailId { get; set; }
+    public int PurchaseOrderDetailID { get; set; }
 
     /// <summary>
     /// Date the product is expected to be received.
@@ -44,8 +42,7 @@ public partial class PurchaseOrderDetail
     /// <summary>
     /// Product identification number. Foreign key to Product.ProductID.
     /// </summary>
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Vendor&apos;s selling price of a single product.
@@ -83,11 +80,11 @@ public partial class PurchaseOrderDetail
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductID")]
     [InverseProperty("PurchaseOrderDetails")]
     public virtual Product Product { get; set; }
 
-    [ForeignKey("PurchaseOrderId")]
+    [ForeignKey("PurchaseOrderID")]
     [InverseProperty("PurchaseOrderDetails")]
     public virtual PurchaseOrderHeader PurchaseOrder { get; set; }
 }

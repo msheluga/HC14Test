@@ -12,34 +12,30 @@ namespace HC14Test.Models;
 /// Transactions for previous years.
 /// </summary>
 [Table("TransactionHistoryArchive", Schema = "Production")]
-[Index("ProductId", Name = "IX_TransactionHistoryArchive_ProductID")]
-[Index("ReferenceOrderId", "ReferenceOrderLineId", Name = "IX_TransactionHistoryArchive_ReferenceOrderID_ReferenceOrderLineID")]
+[Index("ProductID", Name = "IX_TransactionHistoryArchive_ProductID")]
+[Index("ReferenceOrderID", "ReferenceOrderLineID", Name = "IX_TransactionHistoryArchive_ReferenceOrderID_ReferenceOrderLineID")]
 public partial class TransactionHistoryArchive
 {
     /// <summary>
     /// Primary key for TransactionHistoryArchive records.
     /// </summary>
     [Key]
-    [Column("TransactionID")]
-    public int TransactionId { get; set; }
+    public int TransactionID { get; set; }
 
     /// <summary>
     /// Product identification number. Foreign key to Product.ProductID.
     /// </summary>
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Purchase order, sales order, or work order identification number.
     /// </summary>
-    [Column("ReferenceOrderID")]
-    public int ReferenceOrderId { get; set; }
+    public int ReferenceOrderID { get; set; }
 
     /// <summary>
     /// Line number associated with the purchase order, sales order, or work order.
     /// </summary>
-    [Column("ReferenceOrderLineID")]
-    public int ReferenceOrderLineId { get; set; }
+    public int ReferenceOrderLineID { get; set; }
 
     /// <summary>
     /// Date and time of the transaction.

@@ -18,8 +18,7 @@ public partial class PhoneNumberType
     /// Primary key for telephone number type records.
     /// </summary>
     [Key]
-    [Column("PhoneNumberTypeID")]
-    public int PhoneNumberTypeId { get; set; }
+    public int PhoneNumberTypeID { get; set; }
 
     /// <summary>
     /// Name of the telephone number type

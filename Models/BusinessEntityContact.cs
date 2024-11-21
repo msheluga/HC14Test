@@ -11,39 +11,35 @@ namespace HC14Test.Models;
 /// <summary>
 /// Cross-reference table mapping stores, vendors, and employees to people
 /// </summary>
-[PrimaryKey("BusinessEntityId", "PersonId", "ContactTypeId")]
+[PrimaryKey("BusinessEntityID", "PersonID", "ContactTypeID")]
 [Table("BusinessEntityContact", Schema = "Person")]
-[Index("Rowguid", Name = "AK_BusinessEntityContact_rowguid", IsUnique = true)]
-[Index("ContactTypeId", Name = "IX_BusinessEntityContact_ContactTypeID")]
-[Index("PersonId", Name = "IX_BusinessEntityContact_PersonID")]
+[Index("rowguid", Name = "AK_BusinessEntityContact_rowguid", IsUnique = true)]
+[Index("ContactTypeID", Name = "IX_BusinessEntityContact_ContactTypeID")]
+[Index("PersonID", Name = "IX_BusinessEntityContact_PersonID")]
 public partial class BusinessEntityContact
 {
     /// <summary>
     /// Primary key. Foreign key to BusinessEntity.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Primary key. Foreign key to Person.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("PersonID")]
-    public int PersonId { get; set; }
+    public int PersonID { get; set; }
 
     /// <summary>
     /// Primary key.  Foreign key to ContactType.ContactTypeID.
     /// </summary>
     [Key]
-    [Column("ContactTypeID")]
-    public int ContactTypeId { get; set; }
+    public int ContactTypeID { get; set; }
 
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -51,15 +47,15 @@ public partial class BusinessEntityContact
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("BusinessEntityContacts")]
     public virtual BusinessEntity BusinessEntity { get; set; }
 
-    [ForeignKey("ContactTypeId")]
+    [ForeignKey("ContactTypeID")]
     [InverseProperty("BusinessEntityContacts")]
     public virtual ContactType ContactType { get; set; }
 
-    [ForeignKey("PersonId")]
+    [ForeignKey("PersonID")]
     [InverseProperty("BusinessEntityContacts")]
     public virtual Person Person { get; set; }
 }

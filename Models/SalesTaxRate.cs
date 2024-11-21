@@ -12,22 +12,20 @@ namespace HC14Test.Models;
 /// Tax rate lookup table.
 /// </summary>
 [Table("SalesTaxRate", Schema = "Sales")]
-[Index("StateProvinceId", "TaxType", Name = "AK_SalesTaxRate_StateProvinceID_TaxType", IsUnique = true)]
-[Index("Rowguid", Name = "AK_SalesTaxRate_rowguid", IsUnique = true)]
+[Index("StateProvinceID", "TaxType", Name = "AK_SalesTaxRate_StateProvinceID_TaxType", IsUnique = true)]
+[Index("rowguid", Name = "AK_SalesTaxRate_rowguid", IsUnique = true)]
 public partial class SalesTaxRate
 {
     /// <summary>
     /// Primary key for SalesTaxRate records.
     /// </summary>
     [Key]
-    [Column("SalesTaxRateID")]
-    public int SalesTaxRateId { get; set; }
+    public int SalesTaxRateID { get; set; }
 
     /// <summary>
     /// State, province, or country/region the sales tax applies to.
     /// </summary>
-    [Column("StateProvinceID")]
-    public int StateProvinceId { get; set; }
+    public int StateProvinceID { get; set; }
 
     /// <summary>
     /// 1 = Tax applied to retail transactions, 2 = Tax applied to wholesale transactions, 3 = Tax applied to all sales (retail and wholesale) transactions.
@@ -50,8 +48,7 @@ public partial class SalesTaxRate
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -59,7 +56,7 @@ public partial class SalesTaxRate
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("StateProvinceId")]
+    [ForeignKey("StateProvinceID")]
     [InverseProperty("SalesTaxRates")]
     public virtual StateProvince StateProvince { get; set; }
 }

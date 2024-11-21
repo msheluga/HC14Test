@@ -11,25 +11,23 @@ namespace HC14Test.Models;
 /// <summary>
 /// Individual products associated with a specific sales order. See SalesOrderHeader.
 /// </summary>
-[PrimaryKey("SalesOrderId", "SalesOrderDetailId")]
+[PrimaryKey("SalesOrderID", "SalesOrderDetailID")]
 [Table("SalesOrderDetail", Schema = "Sales")]
-[Index("Rowguid", Name = "AK_SalesOrderDetail_rowguid", IsUnique = true)]
-[Index("ProductId", Name = "IX_SalesOrderDetail_ProductID")]
+[Index("rowguid", Name = "AK_SalesOrderDetail_rowguid", IsUnique = true)]
+[Index("ProductID", Name = "IX_SalesOrderDetail_ProductID")]
 public partial class SalesOrderDetail
 {
     /// <summary>
     /// Primary key. Foreign key to SalesOrderHeader.SalesOrderID.
     /// </summary>
     [Key]
-    [Column("SalesOrderID")]
-    public int SalesOrderId { get; set; }
+    public int SalesOrderID { get; set; }
 
     /// <summary>
     /// Primary key. One incremental unique number per product sold.
     /// </summary>
     [Key]
-    [Column("SalesOrderDetailID")]
-    public int SalesOrderDetailId { get; set; }
+    public int SalesOrderDetailID { get; set; }
 
     /// <summary>
     /// Shipment tracking number supplied by the shipper.
@@ -45,14 +43,12 @@ public partial class SalesOrderDetail
     /// <summary>
     /// Product sold to customer. Foreign key to Product.ProductID.
     /// </summary>
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Promotional code. Foreign key to SpecialOffer.SpecialOfferID.
     /// </summary>
-    [Column("SpecialOfferID")]
-    public int SpecialOfferId { get; set; }
+    public int SpecialOfferID { get; set; }
 
     /// <summary>
     /// Selling price of a single product.
@@ -75,8 +71,7 @@ public partial class SalesOrderDetail
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -84,11 +79,11 @@ public partial class SalesOrderDetail
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("SalesOrderId")]
+    [ForeignKey("SalesOrderID")]
     [InverseProperty("SalesOrderDetails")]
     public virtual SalesOrderHeader SalesOrder { get; set; }
 
-    [ForeignKey("SpecialOfferId, ProductId")]
+    [ForeignKey("SpecialOfferID, ProductID")]
     [InverseProperty("SalesOrderDetails")]
     public virtual SpecialOfferProduct SpecialOfferProduct { get; set; }
 }

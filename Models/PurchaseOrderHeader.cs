@@ -12,16 +12,15 @@ namespace HC14Test.Models;
 /// General purchase order information. See PurchaseOrderDetail.
 /// </summary>
 [Table("PurchaseOrderHeader", Schema = "Purchasing")]
-[Index("EmployeeId", Name = "IX_PurchaseOrderHeader_EmployeeID")]
-[Index("VendorId", Name = "IX_PurchaseOrderHeader_VendorID")]
+[Index("EmployeeID", Name = "IX_PurchaseOrderHeader_EmployeeID")]
+[Index("VendorID", Name = "IX_PurchaseOrderHeader_VendorID")]
 public partial class PurchaseOrderHeader
 {
     /// <summary>
     /// Primary key.
     /// </summary>
     [Key]
-    [Column("PurchaseOrderID")]
-    public int PurchaseOrderId { get; set; }
+    public int PurchaseOrderID { get; set; }
 
     /// <summary>
     /// Incremental number to track changes to the purchase order over time.
@@ -36,20 +35,17 @@ public partial class PurchaseOrderHeader
     /// <summary>
     /// Employee who created the purchase order. Foreign key to Employee.BusinessEntityID.
     /// </summary>
-    [Column("EmployeeID")]
-    public int EmployeeId { get; set; }
+    public int EmployeeID { get; set; }
 
     /// <summary>
     /// Vendor with whom the purchase order is placed. Foreign key to Vendor.BusinessEntityID.
     /// </summary>
-    [Column("VendorID")]
-    public int VendorId { get; set; }
+    public int VendorID { get; set; }
 
     /// <summary>
     /// Shipping method. Foreign key to ShipMethod.ShipMethodID.
     /// </summary>
-    [Column("ShipMethodID")]
-    public int ShipMethodId { get; set; }
+    public int ShipMethodID { get; set; }
 
     /// <summary>
     /// Purchase order creation date.
@@ -93,18 +89,18 @@ public partial class PurchaseOrderHeader
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("EmployeeId")]
+    [ForeignKey("EmployeeID")]
     [InverseProperty("PurchaseOrderHeaders")]
     public virtual Employee Employee { get; set; }
 
     [InverseProperty("PurchaseOrder")]
     public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; } = new List<PurchaseOrderDetail>();
 
-    [ForeignKey("ShipMethodId")]
+    [ForeignKey("ShipMethodID")]
     [InverseProperty("PurchaseOrderHeaders")]
     public virtual ShipMethod ShipMethod { get; set; }
 
-    [ForeignKey("VendorId")]
+    [ForeignKey("VendorID")]
     [InverseProperty("PurchaseOrderHeaders")]
     public virtual Vendor Vendor { get; set; }
 }

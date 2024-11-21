@@ -13,15 +13,14 @@ namespace HC14Test.Models;
 /// </summary>
 [Table("SalesTerritory", Schema = "Sales")]
 [Index("Name", Name = "AK_SalesTerritory_Name", IsUnique = true)]
-[Index("Rowguid", Name = "AK_SalesTerritory_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_SalesTerritory_rowguid", IsUnique = true)]
 public partial class SalesTerritory
 {
     /// <summary>
     /// Primary key for SalesTerritory records.
     /// </summary>
     [Key]
-    [Column("TerritoryID")]
-    public int TerritoryId { get; set; }
+    public int TerritoryID { get; set; }
 
     /// <summary>
     /// Sales territory description
@@ -47,8 +46,8 @@ public partial class SalesTerritory
     /// <summary>
     /// Sales in the territory year to date.
     /// </summary>
-    [Column("SalesYTD", TypeName = "money")]
-    public decimal SalesYtd { get; set; }
+    [Column(TypeName = "money")]
+    public decimal SalesYTD { get; set; }
 
     /// <summary>
     /// Sales in the territory the previous year.
@@ -59,8 +58,8 @@ public partial class SalesTerritory
     /// <summary>
     /// Business costs in the territory year to date.
     /// </summary>
-    [Column("CostYTD", TypeName = "money")]
-    public decimal CostYtd { get; set; }
+    [Column(TypeName = "money")]
+    public decimal CostYTD { get; set; }
 
     /// <summary>
     /// Business costs in the territory the previous year.
@@ -71,8 +70,7 @@ public partial class SalesTerritory
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.

@@ -12,21 +12,19 @@ namespace HC14Test.Models;
 /// Sales representative current information.
 /// </summary>
 [Table("SalesPerson", Schema = "Sales")]
-[Index("Rowguid", Name = "AK_SalesPerson_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_SalesPerson_rowguid", IsUnique = true)]
 public partial class SalesPerson
 {
     /// <summary>
     /// Primary key for SalesPerson records. Foreign key to Employee.BusinessEntityID
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Territory currently assigned to. Foreign key to SalesTerritory.SalesTerritoryID.
     /// </summary>
-    [Column("TerritoryID")]
-    public int? TerritoryId { get; set; }
+    public int? TerritoryID { get; set; }
 
     /// <summary>
     /// Projected yearly sales.
@@ -49,8 +47,8 @@ public partial class SalesPerson
     /// <summary>
     /// Sales total year to date.
     /// </summary>
-    [Column("SalesYTD", TypeName = "money")]
-    public decimal SalesYtd { get; set; }
+    [Column(TypeName = "money")]
+    public decimal SalesYTD { get; set; }
 
     /// <summary>
     /// Sales total of previous year.
@@ -61,8 +59,7 @@ public partial class SalesPerson
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -70,7 +67,7 @@ public partial class SalesPerson
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("SalesPerson")]
     public virtual Employee BusinessEntity { get; set; }
 
@@ -86,7 +83,7 @@ public partial class SalesPerson
     [InverseProperty("SalesPerson")]
     public virtual ICollection<Store> Stores { get; set; } = new List<Store>();
 
-    [ForeignKey("TerritoryId")]
+    [ForeignKey("TerritoryID")]
     [InverseProperty("SalesPeople")]
     public virtual SalesTerritory Territory { get; set; }
 }

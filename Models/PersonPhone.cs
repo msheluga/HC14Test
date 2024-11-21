@@ -11,7 +11,7 @@ namespace HC14Test.Models;
 /// <summary>
 /// Telephone number and type of a person.
 /// </summary>
-[PrimaryKey("BusinessEntityId", "PhoneNumber", "PhoneNumberTypeId")]
+[PrimaryKey("BusinessEntityID", "PhoneNumber", "PhoneNumberTypeID")]
 [Table("PersonPhone", Schema = "Person")]
 [Index("PhoneNumber", Name = "IX_PersonPhone_PhoneNumber")]
 public partial class PersonPhone
@@ -20,8 +20,7 @@ public partial class PersonPhone
     /// Business entity identification number. Foreign key to Person.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Telephone number identification number.
@@ -34,8 +33,7 @@ public partial class PersonPhone
     /// Kind of phone number. Foreign key to PhoneNumberType.PhoneNumberTypeID.
     /// </summary>
     [Key]
-    [Column("PhoneNumberTypeID")]
-    public int PhoneNumberTypeId { get; set; }
+    public int PhoneNumberTypeID { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -43,11 +41,11 @@ public partial class PersonPhone
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("PersonPhones")]
     public virtual Person BusinessEntity { get; set; }
 
-    [ForeignKey("PhoneNumberTypeId")]
+    [ForeignKey("PhoneNumberTypeID")]
     [InverseProperty("PersonPhones")]
     public virtual PhoneNumberType PhoneNumberType { get; set; }
 }

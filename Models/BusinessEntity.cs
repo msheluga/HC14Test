@@ -12,21 +12,19 @@ namespace HC14Test.Models;
 /// Source of the ID that connects vendors, customers, and employees with address and contact information.
 /// </summary>
 [Table("BusinessEntity", Schema = "Person")]
-[Index("Rowguid", Name = "AK_BusinessEntity_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_BusinessEntity_rowguid", IsUnique = true)]
 public partial class BusinessEntity
 {
     /// <summary>
     /// Primary key for all customers, vendors, and employees.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.

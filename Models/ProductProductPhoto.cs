@@ -11,7 +11,7 @@ namespace HC14Test.Models;
 /// <summary>
 /// Cross-reference table mapping products and product photos.
 /// </summary>
-[PrimaryKey("ProductId", "ProductPhotoId")]
+[PrimaryKey("ProductID", "ProductPhotoID")]
 [Table("ProductProductPhoto", Schema = "Production")]
 public partial class ProductProductPhoto
 {
@@ -19,15 +19,13 @@ public partial class ProductProductPhoto
     /// Product identification number. Foreign key to Product.ProductID.
     /// </summary>
     [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Product photo identification number. Foreign key to ProductPhoto.ProductPhotoID.
     /// </summary>
     [Key]
-    [Column("ProductPhotoID")]
-    public int ProductPhotoId { get; set; }
+    public int ProductPhotoID { get; set; }
 
     /// <summary>
     /// 0 = Photo is not the principal image. 1 = Photo is the principal image.
@@ -40,11 +38,11 @@ public partial class ProductProductPhoto
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductID")]
     [InverseProperty("ProductProductPhotos")]
     public virtual Product Product { get; set; }
 
-    [ForeignKey("ProductPhotoId")]
+    [ForeignKey("ProductPhotoID")]
     [InverseProperty("ProductProductPhotos")]
     public virtual ProductPhoto ProductPhoto { get; set; }
 }

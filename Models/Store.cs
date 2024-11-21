@@ -12,8 +12,8 @@ namespace HC14Test.Models;
 /// Customers (resellers) of Adventure Works products.
 /// </summary>
 [Table("Store", Schema = "Sales")]
-[Index("Rowguid", Name = "AK_Store_rowguid", IsUnique = true)]
-[Index("SalesPersonId", Name = "IX_Store_SalesPersonID")]
+[Index("rowguid", Name = "AK_Store_rowguid", IsUnique = true)]
+[Index("SalesPersonID", Name = "IX_Store_SalesPersonID")]
 [Index("Demographics", Name = "PXML_Store_Demographics")]
 public partial class Store
 {
@@ -21,8 +21,7 @@ public partial class Store
     /// Primary key. Foreign key to Customer.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Name of the store.
@@ -34,8 +33,7 @@ public partial class Store
     /// <summary>
     /// ID of the sales person assigned to the customer. Foreign key to SalesPerson.BusinessEntityID.
     /// </summary>
-    [Column("SalesPersonID")]
-    public int? SalesPersonId { get; set; }
+    public int? SalesPersonID { get; set; }
 
     /// <summary>
     /// Demographic informationg about the store such as the number of employees, annual sales and store type.
@@ -46,8 +44,7 @@ public partial class Store
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -55,14 +52,14 @@ public partial class Store
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("Store")]
     public virtual BusinessEntity BusinessEntity { get; set; }
 
     [InverseProperty("Store")]
     public virtual ICollection<Customer> Customers { get; set; } = new List<Customer>();
 
-    [ForeignKey("SalesPersonId")]
+    [ForeignKey("SalesPersonID")]
     [InverseProperty("Stores")]
     public virtual SalesPerson SalesPerson { get; set; }
 }

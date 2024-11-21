@@ -12,14 +12,13 @@ namespace HC14Test.Models;
 /// Current version number of the AdventureWorks 2016 sample database. 
 /// </summary>
 [Table("AWBuildVersion")]
-public partial class AwbuildVersion
+public partial class AWBuildVersion
 {
     /// <summary>
     /// Primary key for AWBuildVersion records.
     /// </summary>
     [Key]
-    [Column("SystemInformationID")]
-    public byte SystemInformationId { get; set; }
+    public byte SystemInformationID { get; set; }
 
     /// <summary>
     /// Version number of the database in 9.yy.mm.dd.00 format.
@@ -27,7 +26,7 @@ public partial class AwbuildVersion
     [Required]
     [Column("Database Version")]
     [StringLength(25)]
-    public string DatabaseVersion { get; set; }
+    public string Database_Version { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.

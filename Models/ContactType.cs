@@ -19,8 +19,7 @@ public partial class ContactType
     /// Primary key for ContactType records.
     /// </summary>
     [Key]
-    [Column("ContactTypeID")]
-    public int ContactTypeId { get; set; }
+    public int ContactTypeID { get; set; }
 
     /// <summary>
     /// Contact type description.

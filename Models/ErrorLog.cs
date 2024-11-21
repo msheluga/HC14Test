@@ -18,8 +18,7 @@ public partial class ErrorLog
     /// Primary key for ErrorLog records.
     /// </summary>
     [Key]
-    [Column("ErrorLogID")]
-    public int ErrorLogId { get; set; }
+    public int ErrorLogID { get; set; }
 
     /// <summary>
     /// The date and time at which the error occurred.

@@ -12,7 +12,7 @@ namespace HC14Test.Models;
 /// Human beings involved with AdventureWorks: employees, customer contacts, and vendor contacts.
 /// </summary>
 [Table("Person", Schema = "Person")]
-[Index("Rowguid", Name = "AK_Person_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_Person_rowguid", IsUnique = true)]
 [Index("LastName", "FirstName", "MiddleName", Name = "IX_Person_LastName_FirstName_MiddleName")]
 [Index("AdditionalContactInfo", Name = "PXML_Person_AddContact")]
 [Index("Demographics", Name = "PXML_Person_Demographics")]
@@ -25,8 +25,7 @@ public partial class Person
     /// Primary key for Person records.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Primary type of person: SC = Store Contact, IN = Individual (retail) customer, SP = Sales person, EM = Employee (non-sales), VC = Vendor contact, GC = General contact
@@ -92,8 +91,7 @@ public partial class Person
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -101,7 +99,7 @@ public partial class Person
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("Person")]
     public virtual BusinessEntity BusinessEntity { get; set; }
 

@@ -13,15 +13,14 @@ namespace HC14Test.Models;
 /// </summary>
 [Table("ShipMethod", Schema = "Purchasing")]
 [Index("Name", Name = "AK_ShipMethod_Name", IsUnique = true)]
-[Index("Rowguid", Name = "AK_ShipMethod_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_ShipMethod_rowguid", IsUnique = true)]
 public partial class ShipMethod
 {
     /// <summary>
     /// Primary key for ShipMethod records.
     /// </summary>
     [Key]
-    [Column("ShipMethodID")]
-    public int ShipMethodId { get; set; }
+    public int ShipMethodID { get; set; }
 
     /// <summary>
     /// Shipping company name.
@@ -45,8 +44,7 @@ public partial class ShipMethod
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.

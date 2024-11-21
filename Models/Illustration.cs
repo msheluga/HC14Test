@@ -18,8 +18,7 @@ public partial class Illustration
     /// Primary key for Illustration records.
     /// </summary>
     [Key]
-    [Column("IllustrationID")]
-    public int IllustrationId { get; set; }
+    public int IllustrationID { get; set; }
 
     /// <summary>
     /// Illustrations used in manufacturing instructions. Stored as XML.

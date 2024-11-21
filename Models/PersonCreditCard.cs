@@ -11,7 +11,7 @@ namespace HC14Test.Models;
 /// <summary>
 /// Cross-reference table mapping people to their credit card information in the CreditCard table. 
 /// </summary>
-[PrimaryKey("BusinessEntityId", "CreditCardId")]
+[PrimaryKey("BusinessEntityID", "CreditCardID")]
 [Table("PersonCreditCard", Schema = "Sales")]
 public partial class PersonCreditCard
 {
@@ -19,15 +19,13 @@ public partial class PersonCreditCard
     /// Business entity identification number. Foreign key to Person.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// Credit card identification number. Foreign key to CreditCard.CreditCardID.
     /// </summary>
     [Key]
-    [Column("CreditCardID")]
-    public int CreditCardId { get; set; }
+    public int CreditCardID { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -35,11 +33,11 @@ public partial class PersonCreditCard
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("PersonCreditCards")]
     public virtual Person BusinessEntity { get; set; }
 
-    [ForeignKey("CreditCardId")]
+    [ForeignKey("CreditCardID")]
     [InverseProperty("PersonCreditCards")]
     public virtual CreditCard CreditCard { get; set; }
 }

@@ -13,34 +13,30 @@ namespace HC14Test.Models;
 /// </summary>
 [Table("Customer", Schema = "Sales")]
 [Index("AccountNumber", Name = "AK_Customer_AccountNumber", IsUnique = true)]
-[Index("Rowguid", Name = "AK_Customer_rowguid", IsUnique = true)]
-[Index("TerritoryId", Name = "IX_Customer_TerritoryID")]
+[Index("rowguid", Name = "AK_Customer_rowguid", IsUnique = true)]
+[Index("TerritoryID", Name = "IX_Customer_TerritoryID")]
 public partial class Customer
 {
     /// <summary>
     /// Primary key.
     /// </summary>
     [Key]
-    [Column("CustomerID")]
-    public int CustomerId { get; set; }
+    public int CustomerID { get; set; }
 
     /// <summary>
     /// Foreign key to Person.BusinessEntityID
     /// </summary>
-    [Column("PersonID")]
-    public int? PersonId { get; set; }
+    public int? PersonID { get; set; }
 
     /// <summary>
     /// Foreign key to Store.BusinessEntityID
     /// </summary>
-    [Column("StoreID")]
-    public int? StoreId { get; set; }
+    public int? StoreID { get; set; }
 
     /// <summary>
     /// ID of the territory in which the customer is located. Foreign key to SalesTerritory.SalesTerritoryID.
     /// </summary>
-    [Column("TerritoryID")]
-    public int? TerritoryId { get; set; }
+    public int? TerritoryID { get; set; }
 
     /// <summary>
     /// Unique number identifying the customer assigned by the accounting system.
@@ -53,8 +49,7 @@ public partial class Customer
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -62,18 +57,18 @@ public partial class Customer
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("PersonId")]
+    [ForeignKey("PersonID")]
     [InverseProperty("Customers")]
     public virtual Person Person { get; set; }
 
     [InverseProperty("Customer")]
     public virtual ICollection<SalesOrderHeader> SalesOrderHeaders { get; set; } = new List<SalesOrderHeader>();
 
-    [ForeignKey("StoreId")]
+    [ForeignKey("StoreID")]
     [InverseProperty("Customers")]
     public virtual Store Store { get; set; }
 
-    [ForeignKey("TerritoryId")]
+    [ForeignKey("TerritoryID")]
     [InverseProperty("Customers")]
     public virtual SalesTerritory Territory { get; set; }
 }

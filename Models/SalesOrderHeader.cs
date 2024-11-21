@@ -13,17 +13,16 @@ namespace HC14Test.Models;
 /// </summary>
 [Table("SalesOrderHeader", Schema = "Sales")]
 [Index("SalesOrderNumber", Name = "AK_SalesOrderHeader_SalesOrderNumber", IsUnique = true)]
-[Index("Rowguid", Name = "AK_SalesOrderHeader_rowguid", IsUnique = true)]
-[Index("CustomerId", Name = "IX_SalesOrderHeader_CustomerID")]
-[Index("SalesPersonId", Name = "IX_SalesOrderHeader_SalesPersonID")]
+[Index("rowguid", Name = "AK_SalesOrderHeader_rowguid", IsUnique = true)]
+[Index("CustomerID", Name = "IX_SalesOrderHeader_CustomerID")]
+[Index("SalesPersonID", Name = "IX_SalesOrderHeader_SalesPersonID")]
 public partial class SalesOrderHeader
 {
     /// <summary>
     /// Primary key.
     /// </summary>
     [Key]
-    [Column("SalesOrderID")]
-    public int SalesOrderId { get; set; }
+    public int SalesOrderID { get; set; }
 
     /// <summary>
     /// Incremental number to track changes to the sales order over time.
@@ -80,44 +79,37 @@ public partial class SalesOrderHeader
     /// <summary>
     /// Customer identification number. Foreign key to Customer.BusinessEntityID.
     /// </summary>
-    [Column("CustomerID")]
-    public int CustomerId { get; set; }
+    public int CustomerID { get; set; }
 
     /// <summary>
     /// Sales person who created the sales order. Foreign key to SalesPerson.BusinessEntityID.
     /// </summary>
-    [Column("SalesPersonID")]
-    public int? SalesPersonId { get; set; }
+    public int? SalesPersonID { get; set; }
 
     /// <summary>
     /// Territory in which the sale was made. Foreign key to SalesTerritory.SalesTerritoryID.
     /// </summary>
-    [Column("TerritoryID")]
-    public int? TerritoryId { get; set; }
+    public int? TerritoryID { get; set; }
 
     /// <summary>
     /// Customer billing address. Foreign key to Address.AddressID.
     /// </summary>
-    [Column("BillToAddressID")]
-    public int BillToAddressId { get; set; }
+    public int BillToAddressID { get; set; }
 
     /// <summary>
     /// Customer shipping address. Foreign key to Address.AddressID.
     /// </summary>
-    [Column("ShipToAddressID")]
-    public int ShipToAddressId { get; set; }
+    public int ShipToAddressID { get; set; }
 
     /// <summary>
     /// Shipping method. Foreign key to ShipMethod.ShipMethodID.
     /// </summary>
-    [Column("ShipMethodID")]
-    public int ShipMethodId { get; set; }
+    public int ShipMethodID { get; set; }
 
     /// <summary>
     /// Credit card identification number. Foreign key to CreditCard.CreditCardID.
     /// </summary>
-    [Column("CreditCardID")]
-    public int? CreditCardId { get; set; }
+    public int? CreditCardID { get; set; }
 
     /// <summary>
     /// Approval code provided by the credit card company.
@@ -129,8 +121,7 @@ public partial class SalesOrderHeader
     /// <summary>
     /// Currency exchange rate used. Foreign key to CurrencyRate.CurrencyRateID.
     /// </summary>
-    [Column("CurrencyRateID")]
-    public int? CurrencyRateId { get; set; }
+    public int? CurrencyRateID { get; set; }
 
     /// <summary>
     /// Sales subtotal. Computed as SUM(SalesOrderDetail.LineTotal)for the appropriate SalesOrderID.
@@ -165,8 +156,7 @@ public partial class SalesOrderHeader
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -174,19 +164,19 @@ public partial class SalesOrderHeader
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BillToAddressId")]
+    [ForeignKey("BillToAddressID")]
     [InverseProperty("SalesOrderHeaderBillToAddresses")]
     public virtual Address BillToAddress { get; set; }
 
-    [ForeignKey("CreditCardId")]
+    [ForeignKey("CreditCardID")]
     [InverseProperty("SalesOrderHeaders")]
     public virtual CreditCard CreditCard { get; set; }
 
-    [ForeignKey("CurrencyRateId")]
+    [ForeignKey("CurrencyRateID")]
     [InverseProperty("SalesOrderHeaders")]
     public virtual CurrencyRate CurrencyRate { get; set; }
 
-    [ForeignKey("CustomerId")]
+    [ForeignKey("CustomerID")]
     [InverseProperty("SalesOrderHeaders")]
     public virtual Customer Customer { get; set; }
 
@@ -196,19 +186,19 @@ public partial class SalesOrderHeader
     [InverseProperty("SalesOrder")]
     public virtual ICollection<SalesOrderHeaderSalesReason> SalesOrderHeaderSalesReasons { get; set; } = new List<SalesOrderHeaderSalesReason>();
 
-    [ForeignKey("SalesPersonId")]
+    [ForeignKey("SalesPersonID")]
     [InverseProperty("SalesOrderHeaders")]
     public virtual SalesPerson SalesPerson { get; set; }
 
-    [ForeignKey("ShipMethodId")]
+    [ForeignKey("ShipMethodID")]
     [InverseProperty("SalesOrderHeaders")]
     public virtual ShipMethod ShipMethod { get; set; }
 
-    [ForeignKey("ShipToAddressId")]
+    [ForeignKey("ShipToAddressID")]
     [InverseProperty("SalesOrderHeaderShipToAddresses")]
     public virtual Address ShipToAddress { get; set; }
 
-    [ForeignKey("TerritoryId")]
+    [ForeignKey("TerritoryID")]
     [InverseProperty("SalesOrderHeaders")]
     public virtual SalesTerritory Territory { get; set; }
 }

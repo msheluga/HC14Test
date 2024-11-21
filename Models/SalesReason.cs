@@ -18,8 +18,7 @@ public partial class SalesReason
     /// Primary key for SalesReason records.
     /// </summary>
     [Key]
-    [Column("SalesReasonID")]
-    public int SalesReasonId { get; set; }
+    public int SalesReasonID { get; set; }
 
     /// <summary>
     /// Sales reason description.

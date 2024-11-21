@@ -11,9 +11,9 @@ namespace HC14Test.Models;
 /// <summary>
 /// Cross-reference table mapping vendors with the products they supply.
 /// </summary>
-[PrimaryKey("ProductId", "BusinessEntityId")]
+[PrimaryKey("ProductID", "BusinessEntityID")]
 [Table("ProductVendor", Schema = "Purchasing")]
-[Index("BusinessEntityId", Name = "IX_ProductVendor_BusinessEntityID")]
+[Index("BusinessEntityID", Name = "IX_ProductVendor_BusinessEntityID")]
 [Index("UnitMeasureCode", Name = "IX_ProductVendor_UnitMeasureCode")]
 public partial class ProductVendor
 {
@@ -21,15 +21,13 @@ public partial class ProductVendor
     /// Primary key. Foreign key to Product.ProductID.
     /// </summary>
     [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// Primary key. Foreign key to Vendor.BusinessEntityID.
     /// </summary>
     [Key]
-    [Column("BusinessEntityID")]
-    public int BusinessEntityId { get; set; }
+    public int BusinessEntityID { get; set; }
 
     /// <summary>
     /// The average span of time (in days) between placing an order with the vendor and receiving the purchased product.
@@ -82,11 +80,11 @@ public partial class ProductVendor
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("BusinessEntityId")]
+    [ForeignKey("BusinessEntityID")]
     [InverseProperty("ProductVendors")]
     public virtual Vendor BusinessEntity { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductID")]
     [InverseProperty("ProductVendors")]
     public virtual Product Product { get; set; }
 

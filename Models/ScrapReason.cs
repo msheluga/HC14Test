@@ -19,8 +19,7 @@ public partial class ScrapReason
     /// Primary key for ScrapReason records.
     /// </summary>
     [Key]
-    [Column("ScrapReasonID")]
-    public short ScrapReasonId { get; set; }
+    public short ScrapReasonID { get; set; }
 
     /// <summary>
     /// Failure description.

@@ -19,9 +19,8 @@ public partial class Culture
     /// Primary key for Culture records.
     /// </summary>
     [Key]
-    [Column("CultureID")]
     [StringLength(6)]
-    public string CultureId { get; set; }
+    public string CultureID { get; set; }
 
     /// <summary>
     /// Culture description.

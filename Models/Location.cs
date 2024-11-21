@@ -19,8 +19,7 @@ public partial class Location
     /// Primary key for Location records.
     /// </summary>
     [Key]
-    [Column("LocationID")]
-    public short LocationId { get; set; }
+    public short LocationID { get; set; }
 
     /// <summary>
     /// Location description.

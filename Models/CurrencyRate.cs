@@ -19,8 +19,7 @@ public partial class CurrencyRate
     /// Primary key for CurrencyRate records.
     /// </summary>
     [Key]
-    [Column("CurrencyRateID")]
-    public int CurrencyRateId { get; set; }
+    public int CurrencyRateID { get; set; }
 
     /// <summary>
     /// Date and time the exchange rate was obtained.

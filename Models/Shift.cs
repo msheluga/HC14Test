@@ -20,8 +20,7 @@ public partial class Shift
     /// Primary key for Shift records.
     /// </summary>
     [Key]
-    [Column("ShiftID")]
-    public byte ShiftId { get; set; }
+    public byte ShiftID { get; set; }
 
     /// <summary>
     /// Shift description.

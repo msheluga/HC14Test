@@ -11,31 +11,28 @@ namespace HC14Test.Models;
 /// <summary>
 /// Cross-reference table mapping products to special offer discounts.
 /// </summary>
-[PrimaryKey("SpecialOfferId", "ProductId")]
+[PrimaryKey("SpecialOfferID", "ProductID")]
 [Table("SpecialOfferProduct", Schema = "Sales")]
-[Index("Rowguid", Name = "AK_SpecialOfferProduct_rowguid", IsUnique = true)]
-[Index("ProductId", Name = "IX_SpecialOfferProduct_ProductID")]
+[Index("rowguid", Name = "AK_SpecialOfferProduct_rowguid", IsUnique = true)]
+[Index("ProductID", Name = "IX_SpecialOfferProduct_ProductID")]
 public partial class SpecialOfferProduct
 {
     /// <summary>
     /// Primary key for SpecialOfferProduct records.
     /// </summary>
     [Key]
-    [Column("SpecialOfferID")]
-    public int SpecialOfferId { get; set; }
+    public int SpecialOfferID { get; set; }
 
     /// <summary>
     /// Product identification number. Foreign key to Product.ProductID.
     /// </summary>
     [Key]
-    [Column("ProductID")]
-    public int ProductId { get; set; }
+    public int ProductID { get; set; }
 
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
@@ -43,14 +40,14 @@ public partial class SpecialOfferProduct
     [Column(TypeName = "datetime")]
     public DateTime ModifiedDate { get; set; }
 
-    [ForeignKey("ProductId")]
+    [ForeignKey("ProductID")]
     [InverseProperty("SpecialOfferProducts")]
     public virtual Product Product { get; set; }
 
     [InverseProperty("SpecialOfferProduct")]
     public virtual ICollection<SalesOrderDetail> SalesOrderDetails { get; set; } = new List<SalesOrderDetail>();
 
-    [ForeignKey("SpecialOfferId")]
+    [ForeignKey("SpecialOfferID")]
     [InverseProperty("SpecialOfferProducts")]
     public virtual SpecialOffer SpecialOffer { get; set; }
 }

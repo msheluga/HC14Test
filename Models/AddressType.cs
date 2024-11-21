@@ -13,15 +13,14 @@ namespace HC14Test.Models;
 /// </summary>
 [Table("AddressType", Schema = "Person")]
 [Index("Name", Name = "AK_AddressType_Name", IsUnique = true)]
-[Index("Rowguid", Name = "AK_AddressType_rowguid", IsUnique = true)]
+[Index("rowguid", Name = "AK_AddressType_rowguid", IsUnique = true)]
 public partial class AddressType
 {
     /// <summary>
     /// Primary key for AddressType records.
     /// </summary>
     [Key]
-    [Column("AddressTypeID")]
-    public int AddressTypeId { get; set; }
+    public int AddressTypeID { get; set; }
 
     /// <summary>
     /// Address type description. For example, Billing, Home, or Shipping.
@@ -33,8 +32,7 @@ public partial class AddressType
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
     /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
