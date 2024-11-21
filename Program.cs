@@ -15,7 +15,7 @@ builder.Services.AddAuthorization();
 builder.Services
     .AddGraphQLServer()
     .AddAuthorization()
-    //.AddHttpRequestInterceptor<HttpRequestInterceptor>()
+    .AddHttpRequestInterceptor<HttpRequestInterceptor>()
     //.RegisterDbContext<AdventureWorks2022Context>(DbContextKind.Pooled)
     .AddProjections()
     .AddFiltering()
