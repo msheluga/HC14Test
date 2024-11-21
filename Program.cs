@@ -1,5 +1,7 @@
+using HC14Test.Authorization;
 using HC14Test.Models;
 using HotChocolate.AspNetCore;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,11 @@ builder.Services.AddPooledDbContextFactory<AdventureWorks2022Context>(
 
 builder.Services.AddAuthorization();
 builder.Services.AddHttpContextAccessor();
+
+
+builder.Services.AddSingleton<IAuthorizationHandler, ReadHandler>();
+builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+
 
 builder.Services
     .AddGraphQLServer()

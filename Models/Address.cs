@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using HC14Test.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 namespace HC14Test.Models;
@@ -20,21 +21,23 @@ public partial class Address
     /// <summary>
     /// Primary key for Address records.
     /// </summary>
-    [Key]
-    [Column("AddressID")]
-    public int AddressId { get; set; }
+    [Key]   
+    [PermissionAuthorize("AdventureWorks2022.Person.Address.AddressID.Read")]
+    public int AddressID { get; set; }
 
     /// <summary>
     /// First street address line.
     /// </summary>
     [Required]
     [StringLength(60)]
+    [PermissionAuthorize("AdventureWorks2022.Person.Address.AddressLine1.Read")]
     public string AddressLine1 { get; set; }
 
     /// <summary>
     /// Second street address line.
     /// </summary>
     [StringLength(60)]
+    [PermissionAuthorize("AdventureWorks2022.Person.Address.AddressLine2.Read")]
     public string AddressLine2 { get; set; }
 
     /// <summary>
@@ -42,31 +45,35 @@ public partial class Address
     /// </summary>
     [Required]
     [StringLength(30)]
+    [PermissionAuthorize("AdventureWorks2022.Person.Address.City.Read")]
+
     public string City { get; set; }
 
     /// <summary>
     /// Unique identification number for the state or province. Foreign key to StateProvince table.
-    /// </summary>
-    [Column("StateProvinceID")]
-    public int StateProvinceId { get; set; }
+    /// </summary>    
+    [PermissionAuthorize("AdventureWorks2022.Person.Address.StateProvinceID.Read")]
+    public int StateProvinceID { get; set; }
 
     /// <summary>
     /// Postal code for the street address.
     /// </summary>
     [Required]
     [StringLength(15)]
+    [PermissionAuthorize("AdventureWorks2022.Person.Address.PostalCode.Read")]
     public string PostalCode { get; set; }
 
     /// <summary>
     /// ROWGUIDCOL number uniquely identifying the record. Used to support a merge replication sample.
-    /// </summary>
-    [Column("rowguid")]
-    public Guid Rowguid { get; set; }
+    /// </summary>   
+    [PermissionAuthorize("AdventureWorks2022.Person.Address.rowguid.Read")]
+    public Guid rowguid { get; set; }
 
     /// <summary>
     /// Date and time the record was last updated.
     /// </summary>
     [Column(TypeName = "datetime")]
+    [PermissionAuthorize("AdventureWorks2022.Person.Address.ModifiedDate.Read")]
     public DateTime ModifiedDate { get; set; }
 
     [InverseProperty("Address")]
