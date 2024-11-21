@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="efpt.config.json.user" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HotChocolate.AspNetCore" Version="14.1.0" />
     <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="14.1.0" />
     <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="14.1.0" />
