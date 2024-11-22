@@ -6,6 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var config = builder.Configuration;
+
+
 builder.Services.AddPooledDbContextFactory<AdventureWorks2022Context>(
     options => options
     .UseSqlServer("Data Source=DESKTOP-92K3UB0;" +
@@ -21,13 +24,15 @@ builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizat
 
 
 builder.Services
+    .AddOptions()
     .AddGraphQLServer()
+    .DisableIntrospection(config.GetValue("DisableIntrospection", true))
     .AddAuthorization()
     .AddHttpRequestInterceptor<HttpRequestInterceptor>()
     //.RegisterDbContext<AdventureWorks2022Context>(DbContextKind.Pooled)
     .AddProjections()
     .AddFiltering()
-    .AddSorting()
+    .AddSorting()    
     .AddQueryType<Query>();
 
 var app = builder.Build();
