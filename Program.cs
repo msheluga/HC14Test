@@ -27,12 +27,21 @@ builder.Services
     .AddOptions()
     .AddGraphQLServer()
     .DisableIntrospection(config.GetValue("DisableIntrospection", true))
+    .UseCostAnalyzer()
     .AddAuthorization()
     .AddHttpRequestInterceptor<HttpRequestInterceptor>()
     //.RegisterDbContext<AdventureWorks2022Context>(DbContextKind.Pooled)
     .AddProjections()
     .AddFiltering()
-    .AddSorting()    
+    .AddSorting()
+    .ModifyPagingOptions(opt =>
+    {
+        opt.DefaultPageSize = config.GetValue("PagingOptions:DefaultPageSize", 10);
+        opt.MaxPageSize = config.GetValue("PagingOptions:MaxPageSize", 100);
+        opt.IncludeTotalCount = config.GetValue("PagingOptions:IncludeTotalCount", true);
+        opt.AllowBackwardPagination = config.GetValue("PagingOptions:AllowBackwardPagination", true);
+        opt.RequirePagingBoundaries = config.GetValue("PagingOptions:RequirePagingBoundaries", true);
+    })
     .AddQueryType<Query>();
 
 var app = builder.Build();
