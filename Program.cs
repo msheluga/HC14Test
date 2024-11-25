@@ -27,13 +27,14 @@ builder.Services
     .AddOptions()
     .AddGraphQLServer()
     .DisableIntrospection(config.GetValue("DisableIntrospection", true))
+    //adding this throws  "message": "The query request contains no document or no document id.",
     .UseCostAnalyzer()
     .AddAuthorization()
-    .AddHttpRequestInterceptor<HttpRequestInterceptor>()
-    //.RegisterDbContext<AdventureWorks2022Context>(DbContextKind.Pooled)
+    .AddHttpRequestInterceptor<HttpRequestInterceptor>()  
     .AddProjections()
     .AddFiltering()
     .AddSorting()
+    //adding ModifyPagingOptions throws ' "message": "The maximum allowed type cost was exceeded.",'
     .ModifyPagingOptions(opt =>
     {
         opt.DefaultPageSize = config.GetValue("PagingOptions:DefaultPageSize", 10);
@@ -46,7 +47,7 @@ builder.Services
 
 var app = builder.Build();
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseRouting();
 app.UseAuthorization();
 

@@ -13,6 +13,9 @@ namespace HC14Test
         }
 
         [UsePaging]
+        [UseProjection]
+        [UseFiltering]
+        [UseSorting]
         public async Task<IQueryable<Address>> GetAddress()
         {
             var context = await _dbContextFactory.CreateDbContextAsync();
