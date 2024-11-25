@@ -28,7 +28,7 @@ builder.Services
     .AddGraphQLServer()
     .DisableIntrospection(config.GetValue("DisableIntrospection", true))
     //adding this throws  "message": "The query request contains no document or no document id.",
-    .UseCostAnalyzer()
+    //.UseCostAnalyzer()
     .AddAuthorization()
     .AddHttpRequestInterceptor<HttpRequestInterceptor>()  
     .AddProjections()
