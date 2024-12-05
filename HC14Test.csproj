@@ -16,16 +16,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HotChocolate.AspNetCore" Version="14.1.0" />
-    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="14.1.0" />
-    <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="14.1.0" />
+    <PackageReference Include="HotChocolate.AspNetCore" Version="14.2.0" />
+    <PackageReference Include="HotChocolate.AspNetCore.Authorization" Version="14.2.0" />
+    <PackageReference Include="HotChocolate.AspNetCore.CommandLine" Version="14.2.0" />
     <PackageReference Include="HotChocolate.Data.EntityFramework" Version="14.1.0" />
+    <PackageReference Include="HotChocolate.Execution" Version="14.2.0" />
     <PackageReference Include="HotChocolate.Server" Version="10.5.5" />
-    <PackageReference Include="HotChocolate.Types.Analyzers" Version="14.1.0">
+    <PackageReference Include="HotChocolate.Types.Analyzers" Version="14.2.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="HotChocolate.Types.CursorPagination" Version="14.1.0" />
+    <PackageReference Include="HotChocolate.Types.CursorPagination" Version="14.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.11" />
   </ItemGroup>
 

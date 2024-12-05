@@ -3,6 +3,7 @@ using HC14Test.Models;
 using HotChocolate.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using HotChocolate.Execution.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +43,11 @@ builder.Services
         opt.IncludeTotalCount = config.GetValue("PagingOptions:IncludeTotalCount", true);
         opt.AllowBackwardPagination = config.GetValue("PagingOptions:AllowBackwardPagination", true);
         opt.RequirePagingBoundaries = config.GetValue("PagingOptions:RequirePagingBoundaries", true);
+    })
+    //currently turning it off for testing.  
+    .ModifyCostOptions(options =>
+    {
+        options.EnforceCostLimits = false;
     })
     .AddQueryType<Query>();
 
