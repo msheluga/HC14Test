@@ -2,7 +2,7 @@
 
 namespace HC14Test.ErrorHandling
 {
-    public class ErrorFilter
+    public class ErrorFilter : IErrorFilter
     {
 
         private readonly ConcurrentDictionary<string, IError> _errorDictionary = new();

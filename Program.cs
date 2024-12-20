@@ -4,6 +4,7 @@ using HotChocolate.AspNetCore;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using HotChocolate.Execution.Configuration;
+using HC14Test.ErrorHandling;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +29,7 @@ builder.Services
     .AddOptions()
     .AddGraphQLServer()
     .DisableIntrospection(config.GetValue("DisableIntrospection", true))
+    .AddErrorFilter<ErrorFilter>()
     //adding this throws  "message": "The query request contains no document or no document id.",
     //.UseCostAnalyzer()
     .AddAuthorization()
